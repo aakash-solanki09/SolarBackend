@@ -25,7 +25,7 @@ const updateUserProfile = async (req, res) => {
             }
 
             if (req.file) {
-                user.profileImage = `http://localhost:5000/uploads/${req.file.filename}`;
+                user.profileImage = req.file.path;
             }
 
             // Ensure address object exists

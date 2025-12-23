@@ -1,6 +1,30 @@
 const multer = require('multer');
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const dotenv = require('dotenv');
 
+dotenv.config();
+
+// Configure Cloudinary (SDK automatically picks up CLOUDINARY_URL from env)
+// cloudinary.config({
+//     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//     api_key: process.env.CLOUDINARY_API_KEY,
+//     api_secret: process.env.CLOUDINARY_API_SECRET,
+// });
+
+// Configure Storage
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'solar-app', // Folder name in Cloudinary
+        allowed_formats: ['jpg', 'jpeg', 'png'],
+        // transformation: [{ width: 500, height: 500, crop: 'limit' }], // Optional
+    },
+});
+
+/* 
+// Previous Disk Storage (Commented out)
 const storage = multer.diskStorage({
     destination(req, file, cb) {
         cb(null, 'uploads/');
@@ -9,6 +33,7 @@ const storage = multer.diskStorage({
         cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
     },
 });
+*/
 
 function checkFileType(file, cb) {
     const filetypes = /jpg|jpeg|png/;
@@ -23,7 +48,7 @@ function checkFileType(file, cb) {
 }
 
 const upload = multer({
-    storage,
+    storage: storage,
     fileFilter: function (req, file, cb) {
         checkFileType(file, cb);
     },

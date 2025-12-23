@@ -48,7 +48,7 @@ const createProduct = async (req, res) => {
 
     let imagePaths = [];
     if (req.files && req.files.length > 0) {
-        imagePaths = req.files.map(file => `http://localhost:5000/uploads/${file.filename}`);
+        imagePaths = req.files.map(file => file.path); // Cloudinary URL
     }
 
     const product = new Product({
@@ -89,7 +89,7 @@ const updateProduct = async (req, res) => {
         }
 
         if (req.files && req.files.length > 0) {
-            const newImagePaths = req.files.map(file => `http://localhost:5000/uploads/${file.filename}`);
+            const newImagePaths = req.files.map(file => file.path);
             // Append new images to existing ones. Initialize if undefined.
             product.images = product.images ? [...product.images, ...newImagePaths] : newImagePaths;
             
