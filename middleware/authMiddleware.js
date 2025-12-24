@@ -30,6 +30,7 @@ const protect = async (req, res, next) => {
             res.status(401).json({ message: 'Not authorized, token failed' });
         }
     } else {
+        console.log(`[AuthMiddleware] Protected route blocked: ${req.method} ${req.originalUrl}`);
         res.status(401).json({ message: 'Not authorized, no token' });
     }
 };

@@ -1,0 +1,47 @@
+{
+  "appTheme": {
+    "primary": {
+      "default": "#2563eb",
+      "active": "#1d4ed8",
+      "light": "#dbeafe",
+      "clarity": "rgba(37, 99, 235, 0.20)",
+      "inverse": "#ffffff"
+    },
+    "secondary": {
+      "default": "#f8fafc",
+      "active": "#f1f5f9",
+      "light": "#e2e8f0",
+      "clarity": "rgba(248, 250, 252, 0.20)",
+      "inverse": "#0f172a"
+    },
+    "header": {
+      "background": "#ffffff",
+      "text": "#1f2937",
+      "border": "#e5e7eb"
+    },
+    "footer": {
+      "background": "#1f2a42",
+      "text": "#f3f4f6"
+    },
+    "body": {
+      "background": "#f3f4f6",
+      "text": "#1f2937"
+    },
+    "card": {
+      "background": "#ffffff",
+      "text": "#1f2937",
+      "border": "transparent"
+    }
+  },
+  "_id": "694afea6767067dbd0db46f8",
+  "appName": "Solar",
+  "appLogo": {
+    "primary": "",
+    "secondary": "",
+    "favicon": ""
+  },
+  "heroImage": "",
+  "createdAt": "2025-12-23T20:42:14.117Z",
+  "updatedAt": "2025-12-23T20:48:44.982Z",
+  "__v": 0
+}

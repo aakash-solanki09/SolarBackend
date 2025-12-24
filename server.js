@@ -44,6 +44,7 @@ app.use('/api/products', require('./routes/productRoutes'));
 app.use('/api/chat', require('./routes/chatRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
+app.use('/api/site-settings', require('./routes/siteSettingsRoutes'));
 
 // Socket.io
 io.on('connection', (socket) => {
@@ -129,6 +130,8 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 5000;
 
+
+// Force restart for site settings routes
 server.listen(PORT, () => {
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
