@@ -45,7 +45,7 @@ app.use(cors({
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 // Routes
-app.use('/',()=>{
+app.use('/', (req, res) => {
     res.send("Welcome to Solar Backend");
 })
 app.use('/api/auth', require('./routes/authRoutes'));
