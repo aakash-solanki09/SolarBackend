@@ -7,14 +7,12 @@ const Notification = require('../models/Notification');
 // @access  Private
 const updateUserProfile = async (req, res) => {
     try {
-        console.log("Update Profile Request Body:", req.body);
-        console.log("Update Profile Request File:", req.file);
-        console.log("User ID:", req.user._id);
+
 
         const user = await User.findById(req.user._id);
 
         if (user) {
-            console.log("User found:", user.email);
+
 
             user.name = req.body.name || user.name;
             user.email = req.body.email || user.email;
@@ -30,7 +28,7 @@ const updateUserProfile = async (req, res) => {
 
             // Ensure address object exists
             if (!user.address) {
-                console.log("Initializing user.address");
+
                 user.address = {};
             }
 
@@ -42,9 +40,9 @@ const updateUserProfile = async (req, res) => {
             if (req.body.postalCode !== undefined) user.address.postalCode = req.body.postalCode;
             if (req.body.landmark !== undefined) user.address.landmark = req.body.landmark;
 
-            console.log("Saving user...");
+            // console.log("Saving user...");
             const updatedUser = await user.save();
-            console.log("User saved successfully");
+            // console.log("User saved successfully");
 
             res.json({
                 _id: updatedUser._id,
@@ -55,7 +53,7 @@ const updateUserProfile = async (req, res) => {
                 address: updatedUser.address
             });
         } else {
-            console.log("User not found in DB");
+
             res.status(404).json({ message: 'User not found' });
         }
     } catch (error) {

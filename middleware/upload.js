@@ -40,7 +40,7 @@ function checkFileType(file, cb) {
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = filetypes.test(file.mimetype) || file.mimetype === 'image/svg+xml';
 
-    console.log(`Checking file: ${file.originalname}, Mime: ${file.mimetype}, Ext: ${path.extname(file.originalname)}`);
+    // console.log(`Checking file: ${file.originalname}, Mime: ${file.mimetype}, Ext: ${path.extname(file.originalname)}`);
     if (extname && mimetype) {
         return cb(null, true);
     } else {

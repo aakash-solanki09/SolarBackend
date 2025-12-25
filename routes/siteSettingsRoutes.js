@@ -5,7 +5,7 @@ const { protect, admin } = require('../middleware/authMiddleware');
 const upload = require('../middleware/upload');
 
 router.get('/', (req, res, next) => {
-  console.log('Public site settings route hit');
+
   next();
 }, getSettings);
 

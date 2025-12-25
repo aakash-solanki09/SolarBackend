@@ -48,18 +48,18 @@ app.use('/api/site-settings', require('./routes/siteSettingsRoutes'));
 
 // Socket.io
 io.on('connection', (socket) => {
-    console.log('New client connected:', socket.id);
+
 
     socket.on('join', (userId) => {
         socket.join(userId);
-        console.log(`User ${userId} joined room`);
+
     });
 
     socket.on('sendMessage', async (data) => {
         const { sender, receiver, text } = data;
 
         try {
-            console.log('Server received message:', data);
+
 
             // Prepare chat data
             const chatData = {
@@ -75,12 +75,12 @@ io.on('connection', (socket) => {
                 chatData.receiver = receiver;
             }
 
-            console.log('Attempting to save:', chatData);
+            // console.log('Attempting to save:', chatData);
 
             // Save to DB
             const newChat = new Chat(chatData);
             await newChat.save();
-            console.log('Message saved successfully');
+            // console.log('Message saved successfully');
 
             const messageData = {
                 ...newChat.toObject(),
@@ -95,7 +95,7 @@ io.on('connection', (socket) => {
             }
 
             if (receiver === 'admin') {
-                console.log("Emitting to admin room");
+
                 io.to('admin').emit('message', messageData);
 
                  // Create Notification for Admin
@@ -124,7 +124,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        console.log('Client disconnected');
+
     });
 });
 
