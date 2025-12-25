@@ -123,6 +123,19 @@ const updateSettings = async (req, res) => {
         settings.companyDetails = { ...settings.companyDetails, ...companyData };
     }
 
+    // Handle Social Links Updates
+    if (req.body.socialLinks) {
+        let socialData = req.body.socialLinks;
+        if (typeof socialData === 'string') {
+             try {
+                socialData = JSON.parse(socialData);
+             } catch (e) {
+                console.error("Failed to parse socialLinks JSON", e);
+             }
+        }
+        settings.socialLinks = { ...settings.socialLinks, ...socialData };
+    }
+
     // Handle Leadership Updates
     // Leadership data (text) comes as a JSON string or array in body
     if (req.body.leadership) {
@@ -164,6 +177,19 @@ const updateSettings = async (req, res) => {
         });
         
         settings.leadership = updatedLeadership;
+    }
+
+    // Handle User Experience Updates
+    if (req.body.userExperience) {
+        let uxData = req.body.userExperience;
+        if (typeof uxData === 'string') {
+             try {
+                uxData = JSON.parse(uxData);
+             } catch (e) {
+                console.error("Failed to parse userExperience JSON", e);
+             }
+        }
+        settings.userExperience = { ...settings.userExperience, ...uxData };
     }
 
     const updatedSettings = await settings.save();

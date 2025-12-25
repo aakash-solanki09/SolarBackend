@@ -85,12 +85,22 @@ const siteSettingsSchema = new mongoose.Schema({
     foundedYear: { type: String, default: '2020' },
     tagline: { type: String, default: 'Central India’s leading Rooftop Solar Company.' }
   },
+  socialLinks: {
+    instagram: { type: String, default: '' },
+    facebook: { type: String, default: '' },
+    twitter: { type: String, default: '' }
+  },
   leadership: [{
     name: { type: String },
     role: { type: String },
     phone: { type: String },
     image: { type: String }
-  }]
+  }],
+  userExperience: {
+    tourEnabled: { type: Boolean, default: true },
+    animationsEnabled: { type: Boolean, default: true },
+    welcomeMessage: { type: String, default: 'Welcome to our platform! Let us show you around.' }
+  }
 }, {
   timestamps: true
 });
