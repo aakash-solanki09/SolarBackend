@@ -18,7 +18,7 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: 'solar-app', // Folder name in Cloudinary
-        allowed_formats: ['jpg', 'jpeg', 'png'],
+        allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'avif'],
         // transformation: [{ width: 500, height: 500, crop: 'limit' }], // Optional
     },
 });
@@ -36,14 +36,16 @@ const storage = multer.diskStorage({
 */
 
 function checkFileType(file, cb) {
-    const filetypes = /jpg|jpeg|png/;
+    const filetypes = /jpg|jpeg|png|webp|gif|svg|avif/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = filetypes.test(file.mimetype);
+    const mimetype = filetypes.test(file.mimetype) || file.mimetype === 'image/svg+xml';
 
+    console.log(`Checking file: ${file.originalname}, Mime: ${file.mimetype}, Ext: ${path.extname(file.originalname)}`);
     if (extname && mimetype) {
         return cb(null, true);
     } else {
-        cb('Images only!');
+        console.error('File rejected:', file.originalname, file.mimetype);
+        cb(new Error(`Images only! Rejected: ${file.originalname} (${file.mimetype})`));
     }
 }
 

@@ -20,7 +20,13 @@ router.put('/', protect, admin, upload.fields([
   { name: 'leaderImage_0', maxCount: 1 },
   { name: 'leaderImage_1', maxCount: 1 },
   { name: 'leaderImage_2', maxCount: 1 },
-  { name: 'leaderImage_3', maxCount: 1 }
+  { name: 'leaderImage_3', maxCount: 1 },
+  { name: 'leaderImage_4', maxCount: 1 },
+  { name: 'leaderImage_5', maxCount: 1 },
+  { name: 'leaderImage_6', maxCount: 1 },
+  { name: 'leaderImage_7', maxCount: 1 },
+  { name: 'leaderImage_8', maxCount: 1 },
+  { name: 'leaderImage_9', maxCount: 1 }
 ]), updateSettings);
 
 router.post('/reset', protect, admin, resetSettings);
