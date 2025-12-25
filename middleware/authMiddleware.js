@@ -43,4 +43,12 @@ const admin = (req, res, next) => {
     }
 };
 
-module.exports = { protect, admin };
+const userOnly = (req, res, next) => {
+    if (req.user && req.user.role === 'user') {
+        next();
+    } else {
+        res.status(403).json({ message: 'Access denied. Admins cannot access user routes.' });
+    }
+};
+
+module.exports = { protect, admin, userOnly };
